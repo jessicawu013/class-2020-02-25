@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 ```
 
@@ -24,4 +24,14 @@ roll_two_die <- function() {
 # the tilda tells the function to run the list 1:10 over the function
 
 map_int(1:10, ~ roll_two_die())
+```
+
+```{r}
+
+x <- tibble(x = map_int(1:1000, ~ roll_two_die()))
+
+ggplot(x, aes(x)) + 
+  geom_histogram(binwidth = 1) +
+  ggtitle("Did John Mark cheat in Craps? Probably.")
+
 ```
